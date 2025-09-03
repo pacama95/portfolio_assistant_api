@@ -37,16 +37,13 @@ COPY --from=build --chown=185 /app/build/quarkus-app/*.jar /deployments/
 COPY --from=build --chown=185 /app/build/quarkus-app/app/ /deployments/app/
 COPY --from=build --chown=185 /app/build/quarkus-app/quarkus/ /deployments/quarkus/
 
-EXPOSE 8081
+EXPOSE 8080
 USER 185
-
-# Set the PORT environment variable to match Railway's expectations
-ENV PORT=8081
-
-# Update the application.properties port to use the PORT environment variable
-ENV QUARKUS_HTTP_PORT=${PORT:-8081}
 
 # Set production profile for Railway deployment
 ENV QUARKUS_PROFILE=prod
+
+# Let Railway set the PORT dynamically - don't override it
+# The application.properties will use ${PORT:8081} to read Railway's PORT
 
 ENTRYPOINT ["java", "-jar", "/deployments/quarkus-run.jar"]
