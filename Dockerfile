@@ -49,4 +49,14 @@ ENV QUARKUS_HTTP_PORT=${PORT:-8081}
 # Set production profile for Railway deployment
 ENV QUARKUS_PROFILE=prod
 
+# Explicitly declare environment variables that Railway should provide
+# This ensures they're available in the container at runtime
+ENV DATABASE_URL=""
+ENV PGHOST=""
+ENV PGPORT=""
+ENV PGDATABASE=""
+ENV PGUSER=""
+ENV PGPASSWORD=""
+ENV TWELVE_DATA_API_KEY=""
+
 ENTRYPOINT ["java", "-jar", "/deployments/quarkus-run.jar"]
