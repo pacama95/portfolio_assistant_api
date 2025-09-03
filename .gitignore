@@ -135,6 +135,11 @@ yarn-error.log*
 
 # Docker
 .docker/
+docker-compose.override.yml
+.dockerignore
+
+# Railway
+.railway/
 
 # Temporary files
 *.swp

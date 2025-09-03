@@ -73,3 +73,20 @@ compileJava {
 compileTestJava {
     options.encoding = 'UTF-8'
 }
+
+// Ensure Quarkus generates the proper JAR structure
+quarkus {
+    packageType = 'jar'
+}
+
+// Additional task to copy quarkus-run.jar to build/libs for compatibility with some deployment platforms
+tasks.register('copyQuarkusJar', Copy) {
+    dependsOn 'build'
+    from 'build/quarkus-app'
+    into 'build/libs'
+    include 'quarkus-run.jar'
+    rename 'quarkus-run.jar', "${project.name}-${project.version}.jar"
+}
+
+// Make sure the copy task runs after build
+build.finalizedBy copyQuarkusJar
