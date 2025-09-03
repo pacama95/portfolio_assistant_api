@@ -45,31 +45,6 @@ public class PortfolioApplication implements QuarkusApplication {
     public int run(String... args) throws Exception {
         logger.info("Starting Portfolio Management Application...");
         
-        // Debug: Log environment variables (remove after debugging)
-        String twelveDataKey = System.getenv("TWELVE_DATA_API_KEY");
-        logger.info("TWELVE_DATA_API_KEY environment variable: {}", 
-                   twelveDataKey != null ? "SET (length: " + twelveDataKey.length() + ")" : "NOT SET");
-        
-        // Log all database-related environment variables
-        logger.info("=== Database Environment Variables ===");
-        logger.info("PGHOST: {}", System.getenv("PGHOST"));
-        logger.info("PGPORT: {}", System.getenv("PGPORT"));  
-        logger.info("PGDATABASE: {}", System.getenv("PGDATABASE"));
-        logger.info("PGUSER: {}", System.getenv("PGUSER"));
-        logger.info("PGPASSWORD present: {}", System.getenv("PGPASSWORD") != null);
-        
-        // Railway might use different variable names
-        logger.info("DATABASE_URL present: {}", System.getenv("DATABASE_URL") != null);
-        logger.info("POSTGRES_HOST: {}", System.getenv("POSTGRES_HOST"));
-        logger.info("POSTGRES_PORT: {}", System.getenv("POSTGRES_PORT"));
-        logger.info("POSTGRES_DB: {}", System.getenv("POSTGRES_DB"));
-        logger.info("POSTGRES_USER: {}", System.getenv("POSTGRES_USER"));
-        logger.info("POSTGRES_PASSWORD present: {}", System.getenv("POSTGRES_PASSWORD") != null);
-        
-        logger.info("PORT: {}", System.getenv("PORT"));
-        
-        logger.info("Application is ready to accept connections");
-        
         Quarkus.waitForExit();
         return 0;
     }

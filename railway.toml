@@ -1,7 +1,25 @@
 [build]
-builder = "nixpacks"
+builder = "dockerfile"
 
 [deploy]
 healthcheckPath = "/q/health/live"
 healthcheckTimeout = 300
 restartPolicyType = "on_failure"
+
+[environments.production.variables]
+QUARKUS_PROFILE = "prod"
+
+# Port Configuration
+PORT = "${{PORT}}"
+
+# Database Configuration
+DATABASE_URL = "${{Postgres.DATABASE_URL}}"
+
+PGHOST = "${{Postgres.PGHOST}}"
+PGPORT = "${{Postgres.PGPORT}}"
+PGDATABASE = "${{Postgres.PGDATABASE}}"
+PGUSER = "${{Postgres.PGUSER}}"
+PGPASSWORD = "${{Postgres.PGPASSWORD}}"
+
+# Market Data API Configuration
+TWELVE_DATA_API_KEY = "${{TWELVE_DATA_API_KEY}}"
