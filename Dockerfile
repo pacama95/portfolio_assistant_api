@@ -46,4 +46,7 @@ ENV PORT=8081
 # Update the application.properties port to use the PORT environment variable
 ENV QUARKUS_HTTP_PORT=${PORT:-8081}
 
+# Set production profile for Railway deployment
+ENV QUARKUS_PROFILE=prod
+
 ENTRYPOINT ["java", "-jar", "/deployments/quarkus-run.jar"]
