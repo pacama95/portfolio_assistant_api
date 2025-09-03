@@ -1,0 +1,50 @@
+quarkus:
+  http:
+    port: 8081
+    host: 0.0.0.0
+    cors:
+      ~: true
+      origins: "*"
+      methods: "GET,PUT,POST,DELETE,OPTIONS"
+      headers: "accept, authorization, content-type, x-requested-with"
+      
+  datasource:
+    db-kind: postgresql
+    username: postgres
+    password: portfolio_pass
+    reactive:
+      url: postgresql://localhost:5432/portfolio_db
+      
+  hibernate-orm:
+    database:
+      generation: validate
+    log:
+      sql: true
+      format-sql: true
+      
+  websocket:
+    max-frame-size: 65536
+    
+  micrometer:
+    export:
+      prometheus:
+        enabled: true
+        
+  log:
+    level: INFO
+    category:
+      "com.portfolio": DEBUG
+      "io.quarkus.hibernate": DEBUG
+      "org.hibernate.SQL": DEBUG
+      "org.hibernate.type.descriptor.sql.BasicBinder": TRACE
+
+# Application specific configuration
+application:
+  mcp:
+    server:
+      name: "Portfolio Management Server"
+      version: "1.0.0"
+      description: "Reactive portfolio management with CRUD operations"
+    tools:
+      validation:
+        enabled: true 

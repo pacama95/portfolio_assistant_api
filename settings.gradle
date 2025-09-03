@@ -1,0 +1,11 @@
+pluginManagement {
+    repositories {
+        mavenCentral()
+        gradlePluginPortal()
+    }
+    plugins {
+        id 'io.quarkus' version '3.16.4'
+        id "io.freefair.lombok" version "$lombokPluginVersion"
+    }
+}
+rootProject.name='portfolio_assistant_api' 
